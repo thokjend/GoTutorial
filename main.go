@@ -1,10 +1,14 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"strings"
+	"sync"
+	"time"
 )
 
-/* type elecrticEngine struct{
+type elecrticEngine struct{
 	mpkwh uint8
 	kwh uint8
 }
@@ -31,14 +35,14 @@ func canMakeIt(e engine, miles uint8){
 	}else{
 		fmt.Println("Need to fuel up first!")
 	}
-} */
+}
 
-/* var m = sync.RWMutex{}
+var m = sync.RWMutex{}
 var wg = sync.WaitGroup{}
 var dbData = []string{"id1","id2","id3","id4","id5"}
-var results = []string{} */
+var results = []string{}
 
-/* func dbCall(i int){
+func dbCall(i int){
 	var delay float32 = 2000
 	time.Sleep(time.Duration(delay)*time.Millisecond)
 	fmt.Println("The result from the database is:", dbData[i])
@@ -55,15 +59,15 @@ func log(){
 	m.RLock()
 	fmt.Printf("\nThe current results are: %v", results)
 	m.RUnlock()
-} */
+}
 
-/* func process(c chan int){
+func process(c chan int){
 	defer close(c)
 	for i:=0; i<5; i++{
 		c <- i
 	}
 	fmt.Println("Exiting process")
-} */
+}
 
 func sumSlice[T int | float32 | float64](slice []T) T{
 	var sum T
@@ -79,36 +83,36 @@ func main() {
 
 	var float32Slice = []float32{1,2,3}
 	fmt.Println(sumSlice[float32](float32Slice))
-	/* var c = make(chan int, 5)
+	var c = make(chan int, 5)
 	go process(c)
 	for i:= range c{
 		fmt.Println(i)
 		time.Sleep(time.Second*1)
-	} */
+	}
 
-	/* t0 := time.Now()
+	t0 := time.Now()
 	for i:=0; i<len(dbData); i++{
 		wg.Add(1)
 		go dbCall(i)
 	}
 	wg.Wait()
 	fmt.Printf("\nTotal execution time: %v", time.Since(t0))
-	fmt.Printf("\nThe results are %v", results) */
+	fmt.Printf("\nThe results are %v", results)
 
 
 
-	/* var p *int32 = new(int32)
+	var p *int32 = new(int32)
 	var i int32
 	fmt.Printf("The value p points to is: %v", *p)
 	fmt.Printf("\nThe value of i is: %v", i)
-	p = &i */
+	p = &i
 
-	/* var gasEngine gasEngine = gasEngine{25, 15}
+	var gasEngine gasEngine = gasEngine{25, 15}
 	var elecrticEngine elecrticEngine = elecrticEngine{10, 15}
 	canMakeIt(gasEngine, 1)
-	canMakeIt(elecrticEngine, 1) */
+	canMakeIt(elecrticEngine, 1)
 
-	/* var myString = []rune("résumé")
+	var myString = []rune("résumé")
 	var indexed = myString[1]
 	fmt.Printf("%v, %T\n", indexed, indexed)
 	for i, v := range myString{
@@ -125,26 +129,26 @@ func main() {
 		strBuilder.WriteString(strSlice[i])
 	}
 	var catStr = strBuilder.String()
-	fmt.Printf("\n%v", catStr) */
+	fmt.Printf("\n%v", catStr)
 
-	/* var n int = 1000000
+	var n int = 1000000
 	var testSlice = []int{}
 	var testSlice2 = make([]int, 0, n)
 
-	fmt.Printf("Total time without preallocation: %v\n", timeLoop(testSlice, n))
-	fmt.Printf("Total time with preallocation: %v", timeLoop(testSlice2, n)) */
+	fmt.Printf("\nTotal time without preallocation: %v\n", timeLoop(testSlice, n))
+	fmt.Printf("Total time with preallocation: %v\n", timeLoop(testSlice2, n))
 
-	/* intArr := [...]int32{1, 2, 3}
+	intArr := [...]int32{1, 2, 3}
 	fmt.Println(intArr)
 
-	var intSlice []int32 = []int32{4,5,6}
+	var intSlice1 []int32 = []int32{4,5,6}
 	fmt.Printf("The length is %v with capacity %v\n", len(intSlice), cap(intSlice))
-	intSlice = append(intSlice, 7)
+	intSlice1 = append(intSlice1, 7)
 	fmt.Printf("The length is %v with capacity %v\n", len(intSlice), cap(intSlice))
 
 	var intSlice2 []int32 = []int32{8,9}
-	intSlice = append(intSlice, intSlice2...)
-	fmt.Println(intSlice)
+	intSlice1 = append(intSlice1, intSlice2...)
+	fmt.Println(intSlice1)
 
 	var intSlice3 []int32 = make([]int32, 3, 8)
 	fmt.Println(intSlice3)
@@ -170,9 +174,9 @@ func main() {
 	}
 	for i:=0; i<10; i++{
 		fmt.Println(i)
-	} */
+	}
 
-	/* var printValue string = "Hello World"
+	var printValue string = "Hello World"
 	printMe(printValue)
 
 	var numerator int = 11
@@ -184,23 +188,23 @@ func main() {
 		fmt.Printf("The result of the integer division is %v", result)
 	}else{
 		fmt.Printf("The result of the integer division is %v with remainder %v", result, remainder)
-	} */
+	}
 
 }
 
-/* func timeLoop(slice []int, n int) time.Duration{
+func timeLoop(slice []int, n int) time.Duration{
 	var t0= time.Now()
 	for len(slice) < n{
 		slice = append(slice, 1)
 	}
 	return time.Since(t0)
-} */
+}
 
-/* func printMe(printValue string) {
+func printMe(printValue string) {
 	fmt.Println(printValue)
-} */
+}
 
-/* func intDivision(numerator int, denominator int) (int,int, error){
+func intDivision(numerator int, denominator int) (int,int, error){
 	var err error
 	if denominator == 0{
 		err = errors.New("cannot divide by zero")
@@ -209,4 +213,4 @@ func main() {
 	var result int = numerator/denominator
 	var remainder int = numerator%denominator
 	return result, remainder, err
-} */
+}
