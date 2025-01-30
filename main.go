@@ -1,9 +1,74 @@
 package main
 
-import "fmt"
+/* type elecrticEngine struct{
+	mpkwh uint8
+	kwh uint8
+}
+
+type gasEngine struct {
+	mpg     uint8
+	gallons uint8
+}
+func (e gasEngine) milesLeft() uint8{
+	return e.gallons*e.mpg
+}
+
+func (e elecrticEngine) milesLeft() uint8{
+	return e.kwh*e.mpkwh
+}
+
+type engine interface{
+	milesLeft() uint8
+}
+
+func canMakeIt(e engine, miles uint8){
+	if miles <= e.milesLeft(){
+		fmt.Println("You can make it there!")
+	}else{
+		fmt.Println("Need to fuel up first!")
+	}
+} */
 
 func main() {
-	intArr := [...]int32{1, 2, 3}
+
+	/* var p *int32 = new(int32)
+	var i int32
+	fmt.Printf("The value p points to is: %v", *p)
+	fmt.Printf("\nThe value of i is: %v", i)
+	p = &i */
+
+	/* var gasEngine gasEngine = gasEngine{25, 15}
+	var elecrticEngine elecrticEngine = elecrticEngine{10, 15}
+	canMakeIt(gasEngine, 1)
+	canMakeIt(elecrticEngine, 1) */
+
+	/* var myString = []rune("résumé")
+	var indexed = myString[1]
+	fmt.Printf("%v, %T\n", indexed, indexed)
+	for i, v := range myString{
+		fmt.Println(i,v)
+	}
+	fmt.Printf("\nThe length of 'myString' is %v", len(myString))
+
+	var myRune = 'a'
+	fmt.Printf("\nmyRune = %v", myRune)
+
+	var strSlice = []string{"s","u","b","s","c","r","i","b","e"}
+	var strBuilder strings.Builder
+	for i := range strSlice{
+		strBuilder.WriteString(strSlice[i])
+	}
+	var catStr = strBuilder.String()
+	fmt.Printf("\n%v", catStr) */
+
+	/* var n int = 1000000
+	var testSlice = []int{}
+	var testSlice2 = make([]int, 0, n)
+
+	fmt.Printf("Total time without preallocation: %v\n", timeLoop(testSlice, n))
+	fmt.Printf("Total time with preallocation: %v", timeLoop(testSlice2, n)) */
+
+	/* intArr := [...]int32{1, 2, 3}
 	fmt.Println(intArr)
 
 	var intSlice []int32 = []int32{4,5,6}
@@ -37,10 +102,9 @@ func main() {
 	for i, v := range intArr{
 		fmt.Printf("Index: %v, Value: %v \n", i,v)
 	}
-
-
-
-
+	for i:=0; i<10; i++{
+		fmt.Println(i)
+	} */
 
 	/* var printValue string = "Hello World"
 	printMe(printValue)
@@ -55,7 +119,16 @@ func main() {
 	}else{
 		fmt.Printf("The result of the integer division is %v with remainder %v", result, remainder)
 	} */
+
 }
+
+/* func timeLoop(slice []int, n int) time.Duration{
+	var t0= time.Now()
+	for len(slice) < n{
+		slice = append(slice, 1)
+	}
+	return time.Since(t0)
+} */
 
 /* func printMe(printValue string) {
 	fmt.Println(printValue)
