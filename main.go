@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 /* type elecrticEngine struct{
 	mpkwh uint8
 	kwh uint8
@@ -29,7 +33,69 @@ func canMakeIt(e engine, miles uint8){
 	}
 } */
 
+/* var m = sync.RWMutex{}
+var wg = sync.WaitGroup{}
+var dbData = []string{"id1","id2","id3","id4","id5"}
+var results = []string{} */
+
+/* func dbCall(i int){
+	var delay float32 = 2000
+	time.Sleep(time.Duration(delay)*time.Millisecond)
+	fmt.Println("The result from the database is:", dbData[i])
+	save(dbData[i])
+	log()
+	wg.Done()
+}
+func save(result string){
+	m.Lock()
+	results = append(results, result)
+	m.Unlock()
+}
+func log(){
+	m.RLock()
+	fmt.Printf("\nThe current results are: %v", results)
+	m.RUnlock()
+} */
+
+/* func process(c chan int){
+	defer close(c)
+	for i:=0; i<5; i++{
+		c <- i
+	}
+	fmt.Println("Exiting process")
+} */
+
+func sumSlice[T int | float32 | float64](slice []T) T{
+	var sum T
+	for _, v := range slice{
+		sum += v
+	}
+	return sum
+}
+
 func main() {
+	var intSlice = []int{1,2,3}
+	fmt.Println(sumSlice[int](intSlice))
+
+	var float32Slice = []float32{1,2,3}
+	fmt.Println(sumSlice[float32](float32Slice))
+	/* var c = make(chan int, 5)
+	go process(c)
+	for i:= range c{
+		fmt.Println(i)
+		time.Sleep(time.Second*1)
+	} */
+
+	/* t0 := time.Now()
+	for i:=0; i<len(dbData); i++{
+		wg.Add(1)
+		go dbCall(i)
+	}
+	wg.Wait()
+	fmt.Printf("\nTotal execution time: %v", time.Since(t0))
+	fmt.Printf("\nThe results are %v", results) */
+
+
 
 	/* var p *int32 = new(int32)
 	var i int32
